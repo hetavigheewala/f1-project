@@ -38,5 +38,5 @@ This **Formula 1 Data Analysis Project** is designed to showcase my skills in da
 - **Data Sources**: The project uses data from **Kaggle**, **ERGAST API**, and the **official Formula 1 website**.
 - **Images and Logos**: All images and logos are sourced from free, publicly available sources. These are not original images, and all rights are retained by the respective teams and organizations.
 
-This project highlights a wide range of my skills in data science, programming, and creating visual tools, making it a strong example of how data can bring insights into the exciting world of Formula 1.
+This project is aimed to highlight a wide range of my skills in data science, programming, and creating visual tools, making it a strong example of how data can bring insights into the exciting world of Formula 1.
 
