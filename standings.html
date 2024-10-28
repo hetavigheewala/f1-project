@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Standings 2024</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ff0000; /* F1 Red */
+            padding: 20px;
+            text-align: center;
+            color: white;
+            border-bottom:5px solid #e60000;
+        }
+        h1 {
+            margin: 0;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #ff0000; /* F1 Red */
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-family: 'Formula1 Display Bold', sans-serif;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: whitesmoke;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+        }
+        th {
+            background-color: #ff0000; /* F1 Red */
+            color: white;
+            text-align: center;
+        }
+        td {
+            text-align: center;
+            padding:10px; 
+        }
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        .nationality-flag {
+            width: 30px; /* Adjust the size as needed */
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .team-logo {
+            width: 50px;  /* Set to the desired width */
+            height: 30px; /* Set to the desired height */
+            object-fit: contain; /* Ensures the image fits inside the box without distortion */
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .back-link {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            color: white;
+            background-color: #ff0000; /* F1 Red */
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            background-color: #e60000; /* Darker Red on hover */
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #222;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .center-align {
+            text-align: center;
+        }
+        
+        .left-align {
+            text-align: left;
+        }
+
+        .f1-logo {
+            width: 100px; /* Adjust to your desired size */
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .f1-White-logo {
+            width: 100px; /* Adjust to your desired size */
+            vertical-align: middle;
+            margin-right: 0px;
+            margin-block-end: 15px;
+        }
+
+        /* Ensure that only the name columns are left-aligned */
+        td.name-cell {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> 
+            <img src="asset/f1_white.png" alt="F1 Logo" class="f1-White-logo"> 
+            Driver and Constructor Standings 2024
+        </h1>
+        <p>Data sourced from the F1 Ergast API.</p>
+    </header>
+
+    <h2>
+        <img src="asset/f1_red.png" alt="F1 Logo" class="f1-logo"> 
+        2024 Driver Standings
+    </h2>
+    <table id="driver-standings">
+        <tr>
+            <th class="center-align">Rank</th>
+            <th class="center-align">Driver</th>
+            <th class="center-align">Points</th>
+            <th class="center-align">Wins</th>
+            <th class="center-align">Podiums</th>
+        </tr>
+    </table>
+
+    <h2>
+        <img src="asset/f1_red.png" alt="F1 Logo" class="f1-logo"> 
+        2024 Constructor Standings
+    </h2>
+    <table id="constructor-standings">
+        <tr>
+            <th class="center-align">Rank</th>
+            <th class="center-align">Team</th>
+            <th class="center-align">Points</th>
+            <th class="center-align">Wins</th>
+            <th class="center-align">Podiums</th>
+        </tr>
+    </table>
+
+    <div class="back-link">
+        <a href="index.html">Back to Homepage</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 F1 Standings | All rights reserved</p>
+    </footer>
+
+    <script>
+        const DRIVER_STANDINGS_URL = 'https://ergast.com/api/f1/2024/driverStandings.json';
+        const CONSTRUCTOR_STANDINGS_URL = 'https://ergast.com/api/f1/2024/constructorStandings.json';
+
+        // Fetch driver standings and update the table
+        fetch(DRIVER_STANDINGS_URL)
+            .then(response => response.json())
+            .then(data => {
+                const standingsList = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+                const driverTable = document.getElementById('driver-standings');
+
+                standingsList.forEach(driver => {
+                    const row = driverTable.insertRow();
+                    row.insertCell(0).innerText = driver.position;
+                    row.insertCell(1).innerHTML = 
+                    `
+                        <img src="asset/path_to_flags/${driver.Driver.nationality}.png" alt="${driver.Driver.nationality} Flag" class="nationality-flag">
+                        ${driver.Driver.givenName} ${driver.Driver.familyName}`;
+                    row.cells[1].classList.add('name-cell'); // Add left-align class for driver names
+                    row.insertCell(2).innerText = driver.points;
+                    row.insertCell(3).innerText = driver.wins || 0;     // Wins might not be available
+                    row.insertCell(4).innerText = driver.podiums || 0;  // Podiums might not be available
+                });
+            })
+            .catch(error => console.error('Error fetching driver standings:', error));
+
+        // Fetch constructor standings and update the table
+        fetch(CONSTRUCTOR_STANDINGS_URL)
+            .then(response => response.json())
+            .then(data => {
+                const standingsList = data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+                const constructorTable = document.getElementById('constructor-standings');
+
+                standingsList.forEach(team => {
+                    const row = constructorTable.insertRow();
+                    row.insertCell(0).innerText = team.position;
+                    row.insertCell(1).innerHTML = `
+                        <img src="asset/path_to_team_logos/${team.Constructor.name.toLowerCase().replace(/ /g, "_")}.png" alt="${team.Constructor.name} Logo" class="team-logo">
+                        ${team.Constructor.name}`;
+                    row.cells[1].classList.add('name-cell'); // Add left-align class for constructor names
+                    row.insertCell(2).innerText = team.points;
+                    row.insertCell(3).innerText = team.wins || 0;       // Wins might not be available so default as 0
+                    row.insertCell(4).innerText = team.podiums || 0;    // Podiums might not be available
+                });
+            })
+            .catch(error => console.error('Error fetching constructor standings:', error));
+    </script>
+</body>
+</html>
