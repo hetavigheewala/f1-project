@@ -14,7 +14,6 @@ This **Formula 1 Data Analysis Project** is designed to showcase my skills in da
 ## Skills & Technology Stack
 ### Programming Skills
 - **Python**: Core programming language (version 3.10.2), used for data processing, analysis, and visualization.
-- **Streamlit**: (version 1.33.0) Framework for creating interactive web applications and user interfaces.
 - **Tableau**: Interactive dashboards for data visualization and analysis.
 
 ### Libraries & Tools
