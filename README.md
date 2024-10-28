@@ -2,6 +2,8 @@
 
 This **Formula 1 Data Analysis Project** is designed to showcase my skills in data science, programming, and visualization. Through this project, I explore F1 data to analyze driver and team performances, track details, and race statistics. The goal is to create an engaging, informative platform for F1 fans, analysts, and those curious about the sport. 
 
+> **Note**: This project is still in development, so additional features and improvements are planned.
+
 ## Project Highlights
 - **Driver and Team Profiles**: Detailed data on drivers, teams, and constructors, including performance stats and season achievements.
 - **Track Information**: Insights on F1 tracks, including specific details, weather conditions, records, and key events.
