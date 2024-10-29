@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1 Data Analysis</title>
-    <link rel="icon" href="asset/f1_red.png" type="image/png">
+    <link rel="icon" href="asset/favicon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,7 +12,8 @@
     <!-- Header with Navigation Bar -->
     <header>
         <nav class="navbar">
-            <ul class="nav-list">
+            <div class="hamburger" id="hamburger">&#9776;</div>
+            <ul class="nav-list" id="nav-list">
                 <li><a href="#" class="nav-link">Home</a></li>
                 <li><a href="#" class="nav-link">About F1</a></li>
                 <li><a href="#" class="nav-link">Track Info</a></li>
@@ -51,7 +52,6 @@
                 team histories to in-depth race analyses, covering pit stops, lap times, and more. 
                 Whether you're an F1 enthusiast or a data science fan, this site is designed to make 
                 the data behind the excitement accessible and engaging.
-
             </p>
         </section>
 
@@ -59,7 +59,8 @@
             <h2>F1 News</h2>
             <p>Catch up on the latest happenings in the F1 world, from race results to team changes 
                 and breaking news. This section keeps you up-to-date on all things Formula 1.
-            </section>
+            </p>
+        </section>
 
         <section class="info-section">
             <h2>Upcoming Races</h2>
@@ -75,5 +76,13 @@
         <p>&#169; 2024 F1 Data Project. All Rights Reserved.</p>
     </footer>
 
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navList = document.getElementById('nav-list');
+
+        hamburger.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
